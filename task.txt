@@ -1,0 +1,16 @@
+Project setup
+
+npm install
+node server/app.js
+npm start
+
+
+Description
+
+Create an application (using provided template) in which user can register, login and see his/her profile data. All the data should be stored in a database and not in the application's memory. If using NoSql please use MongoDB, if using relational database - any will do. Please feel free to change the code as you need (template is just to save your time) and use any frontend/backend libraries you need.
+
+User should be able to register a new account. There are country, city and zipcode selects on the /register page. User should fill them one by one. For instance when user selects country cities should be fetched from server. Just 2 countries, 2 cities for each country and 2 random zip codes for each city in the database will be enough.
+User should be able to login (please use JWT or cookie). The more info is collected automatically (e.g. browser version) on each login and register the better. After successful login user should be redirected to /home.
+On /home page user should be able to see all collected data about him/her (username, email, browser, etc.).
+User should be able to logout.
+[OPTIONAL] User should be able to restore his/her password via email.
