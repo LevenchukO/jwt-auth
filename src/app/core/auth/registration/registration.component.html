@@ -1,0 +1,83 @@
+<div class="formcontainer">
+  <div class="formbody">
+    <form style="width:100%;" [formGroup]= "registerForm" >
+      <div class="header">Register</div>
+
+      <div>
+        <mat-form-field style="width:100%;">
+          <input type="text" formControlName="email" matInput placeholder="Email" id="email">
+        </mat-form-field>
+        <span *ngIf="isValid('email')">Entered email is invalid</span>
+      </div>
+
+      <div>
+        <mat-form-field style="width:100%;">
+          <input type="text" formControlName="username" matInput placeholder="Username" id="user">
+        </mat-form-field>
+        <span *ngIf="isValid('username')">Username is required</span>
+      </div>
+
+      <div>
+        <mat-form-field style="width:100%;">
+          <input type="password" formControlName="password" matInput placeholder="Password" id="pass">
+        </mat-form-field>
+        <span *ngIf="isValid('password')">Password is a mandatory field</span>
+      </div>
+
+      <div>
+        <mat-form-field style="width:100%;">
+          <input type="password" formControlName="cnfpass" matInput placeholder="Re-enter Password" id="cnfpass">
+        </mat-form-field>
+        <span *ngIf="isValid('cnfpass')">Password and confirm password should match</span>
+      </div>
+
+      <div>
+        <mat-form-field style="width:100%;">
+          <mat-select placeholder="Select your country" formControlName="country" id="country" (selectionChange)="changeCountry($event.value)">
+            <mat-option *ngFor="let coun of countries" [value]="coun.country">
+              {{coun.country}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span *ngIf="isValid('country')">The country must be chosen</span>
+      </div>
+
+      <div  *ngIf="cities">
+        <mat-form-field style="width:100%;">
+          <mat-select placeholder="Select your city" formControlName="city" id="city" (selectionChange)="changeCity($event.value)">
+            <mat-option *ngFor="let city of cities" [value]="city.city">
+              {{city.city}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span *ngIf="isValid('city')">The city must be chosen</span>
+      </div>
+
+      <div  *ngIf="zipcodes">
+        <mat-form-field style="width:100%;">
+          <mat-select placeholder="Select your zipcode" formControlName="zipcode" id="zipcode">
+            <mat-option *ngFor="let zip of zipcodes" [value]="zip.zipcode">
+              {{zip.zipcode}}
+            </mat-option>
+          </mat-select>
+        </mat-form-field>
+        <span *ngIf="isValid('zipcode')">The zipcode must be chosen</span>
+      </div>
+
+      <div style="margin-top:20px;">
+        <button class="form-btn" [disabled]="registerForm.invalid" (click)="registration()">Register</button>
+      </div>
+
+
+      <div style="text-align: center;">
+        {{successMessage}}
+      </div>
+    </form>
+  </div>
+
+  <div>
+    <div style="width: 290px; padding: 20px;">
+      <button class="form-btn-hollow" (click)="movetologin()">Login</button>
+    </div>
+  </div>
+</div>

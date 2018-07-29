@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="headerbar">
+    <span>JWT-MEAN</span>
+  </div>
+  <div class="boom" *ngIf="userData">
+    <h1>Hello {{userData.username}}!</h1> 
+    <h2>Below is your detailed information:</h2>
+    <ul>
+      <li><span>Username:</span>  {{userData.username}}</li>
+      <li><span>Email:</span>  {{userData.email}}</li>
+      <li><span>Country:</span>  {{userData.country}}</li>
+      <li><span>City:</span>  {{userData.city}}</li>
+      <li><span>Zipcode:</span>  {{userData.zipcode}}</li>
+      <li><span>Registration date:</span>  {{userData.creation_dt | date:'medium'}}</li>
+      <li><span>Your OS:</span>  {{deviceInfo.os}}</li>
+      <li><span>Your OS version:</span>  {{deviceInfo.os_version}}</li>
+      <li><span>Your browser:</span>  {{deviceInfo.browser}}</li>
+      <li><span>Your browser version:</span>  {{deviceInfo.browser_version}}</li>
+    </ul>
+
+    <button mat-raised-button color="primary" (click)="logout()">Logout</button>
+  </div>
+</div>
