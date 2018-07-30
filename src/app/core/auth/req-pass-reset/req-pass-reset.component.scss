@@ -1,9 +1,9 @@
-.formcontainer {
+.main-container{
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
-  .formbody {
+  .formbody{
     display: flex;
     width: 290px;
     min-height: 200px;
@@ -19,21 +19,9 @@
       }
     }
   }
-  .forgotlink{
-    display: flex;
-    a{
-      padding-top: 10px;
-      text-decoration: none;
-      color: white;
-      margin-left: 170px;
-    }
-  }
 }
-
-div {
-  span {
-    font-size: 0.75rem;
-    color: firebrick;
-  }
+.message{
+  text-align: center;
+  color: green;
+  font-size: 16px;
 }
-

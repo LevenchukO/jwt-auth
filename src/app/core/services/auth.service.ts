@@ -40,4 +40,9 @@ export class AuthService {
     return this._http.get(`http://localhost:3010/auth/zipcodes/${cityId}`, {
       observe: 'body'});
   }
+
+  reqPassReset(body: any) {
+    return this._http.post(`http://localhost:3010/auth/recovery-request`, body, {
+      observe: 'body'});
+  }
 }

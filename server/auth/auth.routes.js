@@ -3,6 +3,7 @@ var router = express.Router();
 var User = require('./user.model');
 var jwt = require('jsonwebtoken');
 var location = require('./location.model')
+var nodemailer = require('nodemailer');
 
 var decodedtoken = '';
 
@@ -81,6 +82,46 @@ router.get(`/zipcodes/:cityID`, function (req, res, next) {
     }
     res.send(doc);
   })
+})
+
+router.post('/recovery-request', function (req, res, next) {
+  let token = jwt.sign({email: req.body.email}, `recovery key`, {expiresIn: `4h`});
+  const output = `
+    <h3>To recover the password, click on the link:</h3>
+    http://localhost:4200/auth/pass-reset/${token}
+  `;
+
+    let transporter = nodemailer.createTransport({
+      host: 'smtp.gmail.com',
+      port: 587,
+      secure: false,
+      auth: {
+        user: '2000gramm@gmail.com',
+        pass: '9884258peleador'
+      },
+      tls: {
+        rejectUnauthorized: false
+      }
+    });
+
+    let mailOptions = {
+      from: '"2000gramm" <2000gramm@gmail.com>',
+      to: 'levenchuk.o@gmail.com',
+      subject: 'Recovery password',
+      html: output
+    };
+
+    transporter.sendMail(mailOptions, (error, info) => {
+      if (error) {
+        return console.log(error);
+      }
+      console.log('Message sent: %s', info.messageId);
+      res.status(200).json({"text":"SEND SUCCESS => check your email"});
+    });
+  });
+
+router.get('/recovery-pass/:token', function (req, res, next) {
+
 })
 
 function verifyToken(req, res, next) {

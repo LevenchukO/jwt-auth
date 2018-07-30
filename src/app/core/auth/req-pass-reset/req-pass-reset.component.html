@@ -1,0 +1,19 @@
+<div class="main-container">
+  <div class="formbody">
+    <form style="width:100%;" [formGroup]="recoveryForm">
+      <div class="header">Forgot your password?</div>
+      <div>
+        <mat-form-field style="width:100%;">
+          <input type="text" formControlName="email" matInput placeholder="Email">
+        </mat-form-field>
+        <span *ngIf="isValid('email')">Email cannot be blank</span>
+      </div>
+      <div class="message" *ngIf="sendMessage">
+        {{sendMessage.text}}
+      </div>
+      <div style="margin-top:40px;">
+        <button class="form-btn" [disabled]="recoveryForm.invalid" (click)="recovery()">Send recovery email</button>
+      </div>
+    </form>
+  </div>
+</div>
